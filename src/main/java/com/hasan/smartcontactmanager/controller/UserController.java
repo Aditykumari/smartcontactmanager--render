@@ -105,7 +105,7 @@ public class UserController {
                 String uploadDirectory = userDirectory + "\\uploadImg";
                 */
                 // image save to static folder
-                File saveFile = new ClassPathResource("static/img/contactImage").getFile();
+                File saveFile = new ClassPathResource("static/img").getFile();
 
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
                 Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
@@ -222,12 +222,12 @@ public class UserController {
                 // file rewrite
                 // At first delete old photo and update photo
                 // delete photo
-                File deleteFile = new ClassPathResource("static/img/contactImage").getFile();
+                File deleteFile = new ClassPathResource("static/img").getFile();
                 File oldFile = new File(deleteFile, oldContact.getImageUrl());
                 boolean isDelete = oldFile.delete();
 
                 // Update photo
-                File saveFile = new ClassPathResource("static/img/contactImage").getFile();
+                File saveFile = new ClassPathResource("static/img").getFile();
                 // rename file with currentTimeMillis
                 String filename = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
                 filename = System.currentTimeMillis() + filename.toLowerCase().replaceAll(" ", "-");
